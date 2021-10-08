@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+ext {
+    lombokVersion = '1.18.20'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+//configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//    // required for Gradle 6.2 and up + Spring
+//    // see https://docs.gradle.org/current/userguide/upgrading_version_6.html
+//    [apiElements, runtimeElements].each {
+//        it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+//        it.outgoing.artifact(bootJar)
+//    }
+//}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    annotationProcessor(
+            "org.projectlombok:lombok:${lombokVersion}"
+    )
+}
+
+test {
+    useJUnitPlatform()
+}

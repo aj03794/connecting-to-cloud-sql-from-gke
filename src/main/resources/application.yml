@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:${DB_PORT:5432}/${DB_NAME:todosdb}
+    username: ${DB_USER:sample_user}
+    password: ${DB_PASS:password}
+  config:
+    activate:
+      on-profile: local, it, dev, stage, prod, default
